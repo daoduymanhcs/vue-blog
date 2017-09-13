@@ -1,12 +1,12 @@
 <template>
   <div id="main">
     <div class="container">
-      <Post></Post>
-      <Post></Post>
-      <Post></Post>
-      <Post></Post>
-      <Post></Post>
-      <Post></Post>
+      <Post name="gifts"></Post>
+      <Post name="games"></Post>
+      <Post name="holidays"></Post>
+      <Post name="computers"></Post>
+      <Post name="cups"></Post>
+      <Post name="cakes"></Post>
     </div>
   </div>
 </template>

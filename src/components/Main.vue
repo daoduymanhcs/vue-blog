@@ -1,16 +1,16 @@
 <template>
   <div class="">
-    <Header></Header>
+    <Top></Top>
     <Layout></Layout>
   </div>
 </template>
 
 <script>
-import Header from '@/components/Header'
+import Top from '@/components/Header'
 import Layout from '@/components/Content/Layout'
 export default {
   components: {
-    Header, Layout
+    Top, Layout
   }
 }
 </script>

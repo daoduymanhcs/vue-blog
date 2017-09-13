@@ -1,30 +1,41 @@
 <template>
   <div class="subreddit">
-    <h2>AWW</h2>
-     <ul class="item-list">
-       <li>
-         <div class="post">
-           <a href="https://i.redd.it/1i6ovy5jrhlz.gif" target="_blank" class="thumbnail" style="background-image: url(&quot;https://b.thumbs.redditmedia.com/-yFxggVsM18wNDPgokvgbz68QzPI-oHDs7tKFn1VQew.jpg&quot;);"></a>
-            <div class="details"><a href="https://i.redd.it/1i6ovy5jrhlz.gif" title="happy lil bird knows how cute she is" target="_blank" class="title">
-              happy lil bird knows how cute she is</a>
-              <div class="action-buttons">
-                <a href="" title="Vote"><i class="material-icons">thumbs_up_down</i>
-                  59027
-                </a>
-                <a href="" title="Go to discussion"><i class="material-icons">forum</i>
-                  874
-                </a>
-              </div>
-            </div>
-          </div>
-        </li>
-      </ul>
-    </div>
+    <h2>{{ name }}</h2>
+    <ul class="item-list">
+      <Detail v-for="post in posts" :post="post.data"></Detail>
+    </ul>
+  </div>
 </template>
 
 <script>
-export default {
-}
+  import Detail from '@/components/Content/Detail'
+  export default {
+    data () {
+      return {
+        posts: null
+      }
+    },
+    props: {
+      name: {
+        type: String,
+        required: true
+      }
+    },
+    computed: {
+      getPost () {
+        return this.posts
+      }
+    },
+    created: function () {
+      // `this` points to the vm instance
+      this.axios.get('https://www.reddit.com/r/' + this.name + '/top.json?limit=5').then((response) => {
+        this.posts = response.data.data.children
+      })
+    },
+    components: {
+      Detail
+    }
+  }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
